@@ -1,1 +1,1 @@
-i am genie program - i create program's uberjar
+i am genie library - i create program's uberjar
