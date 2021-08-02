@@ -7,3 +7,9 @@
    [clojure.string]
    [clojure.spec.alpha :as s]
    [clojure.java.io :as io]))
+
+(defn process
+  [opts]
+  (let [default-opts {:uberjar-name "out/program.standalone.jar"
+                      :main-ns nil}
+        {:keys [uberjar-name main-ns]} (merge default-opts opts)]))
