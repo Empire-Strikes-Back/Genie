@@ -8,6 +8,8 @@
    [clojure.spec.alpha :as s]
    [clojure.java.io :as io]))
 
+(do (set! *warn-on-reflection* true) (set! *unchecked-math* true))
+
 (defn process
   [opts]
   (let [default-opts {:uberjar-name "out/program.standalone.jar"
