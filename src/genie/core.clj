@@ -14,4 +14,5 @@
   [opts]
   (let [default-opts {:uberjar-name "out/program.standalone.jar"
                       :main-ns nil}
-        {:keys [uberjar-name main-ns]} (merge default-opts opts)]))
+        {:keys [uberjar-name main-ns]} (merge default-opts opts)]
+    (println opts)))
