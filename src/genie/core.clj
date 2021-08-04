@@ -6,7 +6,9 @@
                                      pipeline pipeline-async]]
    [clojure.string]
    [clojure.spec.alpha :as s]
-   [clojure.java.io :as io]))
+   [clojure.java.io :as io]
+
+   [clojure.tools.build.api :as build.api]))
 
 (do (set! *warn-on-reflection* true) (set! *unchecked-math* true))
 
@@ -14,4 +16,32 @@
   [opts]
   (let [default-opts {:uberjar-name "out/program.standalone.jar"
                       :main-ns nil}
-        {:keys [uberjar-name main-ns]} (merge default-opts opts)]))
+        process-dir (-> (io/file (System/getProperty "user.dir")) (.getCanonicalPath))
+        {:keys [uberjar-name main-ns]} (merge default-opts opts)
+        uberjar-name (str uberjar-name)]
+    (println opts)
+    (println (type uberjar-name))
+    (println (type main-ns))
+
+    (let [class-dir "out/classes"
+          version "1"
+          basis (build.api/create-basis {:project "deps.edn"})]
+      #_(build.api/write-pom
+         {:class-dir class-dir
+          :lib main-ns
+          :version version
+          :basis basis
+          :src-dirs ["src"]})
+      #_(build.api/copy-dir
+         {:src-dirs ["src"]
+          :target-dir class-dir})
+      (build.api/compile-clj {:basis basis
+                              :src-dirs ["src"]
+                              :class-dir class-dir})
+      (build.api/uber
+       {:class-dir class-dir
+        :uber-file uberjar-name
+        :basis basis
+        :main main-ns
+        :manifest {"Manifest-Version" "1"
+                   "Created-By" "library"}}))))
