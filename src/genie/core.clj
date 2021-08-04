@@ -23,7 +23,7 @@
           basis (build.api/create-basis {:project "deps.edn"})]
       (build.api/write-pom
        {:class-dir class-dir
-        :lib main-ns
+        :lib (-> main-ns (str) (clojure.string/split #"\.") (first) (repeat) (->> (take 2) (clojure.string/join "/")) (symbol))
         :version version
         :basis basis
         :src-dirs ["src"]})
