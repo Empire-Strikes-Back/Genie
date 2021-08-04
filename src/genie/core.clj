@@ -38,6 +38,6 @@
        {:class-dir class-dir
         :uber-file uberjar-name
         :basis basis
-        :main main-ns
+        :main (-> main-ns (str) (clojure.string/replace #"-" "_") (symbol))
         :manifest {"Manifest-Version" "1"
                    "Created-By" "library"}}))))
