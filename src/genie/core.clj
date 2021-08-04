@@ -19,10 +19,6 @@
         process-dir (-> (io/file (System/getProperty "user.dir")) (.getCanonicalPath))
         {:keys [uberjar-name main-ns]} (merge default-opts opts)
         uberjar-name (str uberjar-name)]
-    (println opts)
-    (println (type uberjar-name))
-    (println (type main-ns))
-
     (let [class-dir "out/classes"
           version "1"
           basis (build.api/create-basis {:project "deps.edn"})]
