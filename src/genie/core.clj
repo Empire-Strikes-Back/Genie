@@ -17,17 +17,16 @@
   (let [default-opts {:uberjar-name "out/program.standalone.jar"
                       :main-ns nil}
         process-dir (-> (io/file (System/getProperty "user.dir")) (.getCanonicalPath))
-        {:keys [uberjar-name main-ns]} (merge default-opts opts)
-        uberjar-name (str uberjar-name)]
+        {:keys [uberjar-name main-ns]} (merge default-opts opts)]
     (let [class-dir "out/classes"
           version "1"
           basis (build.api/create-basis {:project "deps.edn"})]
-      #_(build.api/write-pom
-         {:class-dir class-dir
-          :lib main-ns
-          :version version
-          :basis basis
-          :src-dirs ["src"]})
+      (build.api/write-pom
+       {:class-dir class-dir
+        :lib main-ns
+        :version version
+        :basis basis
+        :src-dirs ["src"]})
       #_(build.api/copy-dir
          {:src-dirs ["src"]
           :target-dir class-dir})
