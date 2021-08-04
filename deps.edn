@@ -4,4 +4,7 @@
         org.clojure/spec.alpha {:mvn/version "0.2.187"}
 
         build/build {:git/url "https://github.com/clojure/tools.build"
-                     :sha "98c1e8eb3ae2c2477136084be5636b61f38738f7"}}}
+                     :sha "98c1e8eb3ae2c2477136084be5636b61f38738f7"
+                     :exclusions [org.clojure/tools.deps.alpha]}
+        deps/deps {:git/url "https://github.com/clojure/tools.deps.alpha"
+                   :sha "459222ca6e4fce91cf5838435589a028cedbc784"}}}
