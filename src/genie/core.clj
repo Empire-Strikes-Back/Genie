@@ -27,9 +27,9 @@
         :version version
         :basis basis
         :src-dirs ["src"]})
-      #_(build.api/copy-dir
-         {:src-dirs ["src"]
-          :target-dir class-dir})
+      (build.api/copy-dir
+       {:src-dirs ["src"]
+        :target-dir class-dir})
       (build.api/compile-clj {:basis basis
                               :src-dirs ["src"]
                               :class-dir class-dir})
