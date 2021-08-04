@@ -32,7 +32,8 @@
         :target-dir class-dir})
       (build.api/compile-clj {:basis basis
                               :src-dirs ["src"]
-                              :class-dir class-dir})
+                              :class-dir class-dir
+                              :compile-opts {:direct-linking true}})
       (build.api/uber
        {:class-dir class-dir
         :uber-file uberjar-name
