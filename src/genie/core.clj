@@ -5,7 +5,6 @@
                                      timeout to-chan  sliding-buffer dropping-buffer
                                      pipeline pipeline-async]]
    [clojure.string]
-   [clojure.spec.alpha :as s]
    [clojure.java.io :as io]
 
    [clojure.tools.build.api :as build.api]))
